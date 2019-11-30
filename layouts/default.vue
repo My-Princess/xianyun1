@@ -3,14 +3,16 @@
     <!-- 内容占位组件 -->
     <Herder />
     <nuxt />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Herder from '../components/header'
+import Footer from '../components/footer'
 export default {
   components: {
-    Herder
+    Herder, Footer
   }
 }
 </script>
