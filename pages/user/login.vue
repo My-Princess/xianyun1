@@ -1,11 +1,10 @@
 <template>
-  <div class="container">
-    首页
-  </div>
+  <div>存放用户模块</div>
 </template>
 
 <script>
 export default {
+
 }
 </script>
 

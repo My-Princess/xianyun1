@@ -1,11 +1,10 @@
 <template>
-  <div class="container">
-    首页
-  </div>
+  <div>旅游攻略模块首页</div>
 </template>
 
 <script>
 export default {
+
 }
 </script>
 
