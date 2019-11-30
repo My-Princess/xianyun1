@@ -1,13 +1,17 @@
 <template>
   <div>
     <!-- 内容占位组件 -->
+    <Herder />
     <nuxt />
   </div>
 </template>
 
 <script>
+import Herder from '../components/header'
 export default {
-
+  components: {
+    Herder
+  }
 }
 </script>
 
@@ -34,9 +38,6 @@ ul, li, ol{
 a{
   text-decoration:none;
   color:inherit;
-}
-a:hover{
-
 }
 em,i{
   font-style: normal;
