@@ -1,12 +1,5 @@
 <template>
-  <el-form
-    ref="ruleForm"
-    :model="ruleForm"
-    :rules="rules"
-
-    status-icon
-    class="form"
-  >
+  <el-form ref="ruleForm" :model="ruleForm" :rules="rules" status-icon class="form">
     <!-- 用户名 -->
     <el-form-item prop="username" class="form-item">
       <el-input v-model="ruleForm.username" placeholder="用户名/手机" autocomplete="off" />
@@ -51,15 +44,26 @@ export default {
       this.$refs.ruleForm.validate((valid) => {
         // true 没有错误
         if (valid) {
-          this.$axios({
-            url: '/accounts/login',
-            method: 'post',
-            data: this.ruleForm
-          })
-            .then((res) => {
-              console.log(res)
-              this.$store.commit('user/setUserInfo', res.data)
+          // this.$axios({
+          //   url: '/accounts/login',
+          //   method: 'post',
+          //   data: this.ruleForm
+          // })
+          //   .then((res) => {
+          //     console.log(res)
+          //     this.$store.commit('user/setUserInfo', res.data)
+          //   })
+
+          // 使用vuex的actions替换这里直接写的ajax请求
+          this.$store.dispatch('/login', this.ruleForm).then((res) => {
+            this.$message({
+              message: '登录成功,正在跳转',
+              type: 'success'
             })
+            setTimeout(() => {
+              this.$router.replace('/')
+            }, 1000)
+          })
         }
       })
     }
