@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="!$store.state.user.userInfo.token" class="container">
     <el-row type="flex" justify="center" align="middle" class="main">
       <div class="form-wrapper">
         <!-- 表单头部tab -->
@@ -19,7 +19,11 @@
 </template>
 
 <script>
+import loginForm from './loginForm'
 export default {
+  components: {
+    loginForm
+  },
   data () {
     return {
       currentTab: 0

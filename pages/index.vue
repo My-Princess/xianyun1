@@ -3,7 +3,7 @@
     <!-- 走马灯轮播图 -->
     <el-carousel :interval="5000" arrow="always">
       <el-carousel-item v-for="(item, index) in links" :key="index">
-        <div :style="`background:url(${item.url}) center center no-repeat;background-size:contain contain;`" class="banner-image" />
+        <div :style="`background:url(${$axios.defaults.baseURL + item.url}) center center no-repeat;background-size:contain contain;`" class="banner-image" />
       </el-carousel-item>
     </el-carousel>
 
