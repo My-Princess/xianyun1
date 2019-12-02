@@ -16,6 +16,7 @@ export const mutations = {
 }
 
 export const actions = {
+  // this.$store.commit = da
   login ({ commit }, data) {
     return this.$axios({
       url: '/accounts/login',

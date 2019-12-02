@@ -55,7 +55,7 @@ export default {
           //   })
 
           // 使用vuex的actions替换这里直接写的ajax请求
-          this.$store.dispatch('/login', this.ruleForm).then((res) => {
+          this.$store.dispatch('user/login', this.ruleForm).then((res) => {
             this.$message({
               message: '登录成功,正在跳转',
               type: 'success'
