@@ -13,7 +13,12 @@
         <!-- tab栏 -->
         <el-row type="flex" class="search-tab">
           <!-- 绑定点击事件,每次点击自动切换 currentOption -->
-          <span v-for="(item,index) in options" :key="index" @click="currentOption = index">
+          <span
+            v-for="(item,index) in options"
+            :key="index"
+            @click="currentOptionTab(index)"
+            :class="{active:currentOption === index}"
+          >
             <i>{{ item.title }}</i>
           </span>
         </el-row>
@@ -22,7 +27,7 @@
         <el-row type="flex" align="middle" class="search-input">
           <!-- 这时候每次点击都会获得当前的 index 只要拿到对应的 placeholder 就可以了 -->
           <input :placeholder="options[currentOption].placeholder" type="text">
-          <i class="el-icon-search" />
+          <i @click="handleSearch" class="el-icon-search" />
         </el-row>
       </div>
     </div>
@@ -60,6 +65,23 @@ export default {
       const { data } = res.data
       this.links = data
     })
+  },
+  methods: {
+    handleSearch () {
+      if (this.currentOption === 0) {
+        this.$router.push('/post')
+      }
+      if (this.currentOption === 1) {
+        this.$router.push('/hotel')
+      }
+    },
+    currentOptionTab (index) {
+      if (index === 2) {
+        this.$router.push('/air')
+      } else {
+        this.currentOption = index
+      }
+    }
   }
 }
 </script>
