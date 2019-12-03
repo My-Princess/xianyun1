@@ -44,6 +44,11 @@
                 个人中心
               </nuxt-link>
             </el-dropdown-item>
+            <el-dropdown-item>
+              <div @click="handleLogout">
+                退出
+              </div>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
 
@@ -60,7 +65,14 @@
 export default {
   methods: {
     // 用户退出
-    handleLogout () {}
+    handleLogout () {
+      const { commit } = this.$store
+      commit('user/cleanUserInfo')
+      this.$message({
+        message: '退出成功',
+        type: 'success'
+      })
+    }
   }
 
 }

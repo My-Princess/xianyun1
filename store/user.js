@@ -12,6 +12,14 @@ export const mutations = {
   // 第二个， 修改数据
   setUserInfo (state, data) {
     state.userInfo = data
+  },
+  cleanUserInfo (state, info) {
+    console.log(process.browser)
+    // 判断当前环境
+    if (process.browser) {
+      localStorage.removeItem('userInfo')
+    }
+    state.userInfo = ''
   }
 }
 
@@ -25,7 +33,7 @@ export const actions = {
     }).then((res) => {
       const data = res.data
       // 保存到state
-      commit('setUserInfo', data)
+      // commit('setUserInfo', data)
       return data
     }
     )

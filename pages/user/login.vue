@@ -12,7 +12,9 @@
           >{{ item }}</span>
         </el-row>
         <!-- form表单 -->
+        <!-- <input  type="text" style="display:none"> -->
         <loginForm v-if="currentTab === 0" />
+        <registerForm v-model="currentTab" v-if="currentTab === 1" />
       </div>
     </el-row>
   </div>
@@ -20,9 +22,10 @@
 
 <script>
 import loginForm from './loginForm'
+import registerForm from './registerForm'
 export default {
   components: {
-    loginForm
+    loginForm, registerForm
   },
   data () {
     return {

@@ -62,6 +62,7 @@ export default {
             })
             setTimeout(() => {
               this.$router.replace('/')
+              this.$store.commit('user/setUserInfo', res)
             }, 1000)
           })
         }
