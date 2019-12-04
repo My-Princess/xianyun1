@@ -10,7 +10,10 @@
 import { Message } from 'element-ui'
 
 export default function ({ $axios, redirect }) {
+  // const { $axios, redirect } = nuxt
   $axios.onError((err) => {
+    console.dir(err)
+    // console.log(err)
     const { statusCode, message } = err.response.data
 
     // 还未使用
