@@ -12,8 +12,9 @@
               <strong>{{ flight.dep_time }}</strong>
               <span>{{ flight.dst_airport_name }}</span>
             </el-col>
+            <!-- 时间差 -->
             <el-col :span="8" class="flight-time">
-              <span>2时20分</span>
+              <span>{{ rankTime }}</span>
             </el-col>
             <el-col :span="8" class="flight-airport">
               <strong>{{ flight.arr_time }}</strong>
@@ -26,7 +27,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="flight-recommend">
+    <div v-if="showRecommend" class="flight-recommend">
       <!-- 隐藏的座位信息列表 -->
       <el-row type="flex" justify="space-between" align="middle">
         <el-col :span="4">
@@ -68,8 +69,32 @@ export default {
   props: [ 'flight' ],
   data () {
     return {
-
+      showRecommend: false // 列表默认收起
     }
+  },
+  computed: {
+    // 计算出相差时间
+    rankTime () {
+      // 转换为分钟
+      const dep = this.flight.dep_time.split(':')
+      console.log(dep)
+      const arr = this.flight.arr_time.split(':')
+      console.log(arr)
+      const stateTime = dep[0] * 60 + +dep[1]
+      const endTime = arr[0] * 60 + +arr[1]
+
+      // 到达时间的分钟相减得到分钟
+      let dis = endTime - stateTime
+      // 如果是凌晨时间段是负数，需要加24小时
+      if (dis < 0) {
+        dis = endTime + 24 * 60 - stateTime
+      }
+      // 得到时间差
+      return `${Math.floor(dis / 60)}时${dis % 60}分`
+    }
+  },
+  methods: {
+
   }
 }
 </script>

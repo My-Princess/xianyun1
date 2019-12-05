@@ -162,7 +162,6 @@ export default {
           this.firstPlayFlag1 = false // 这里设置false仅让他执行一次
         }
         this.form.destCode = arr[0].sort
-        // console.log(22222)
       }
       cb(arr)
     },
