@@ -22,7 +22,6 @@ export const mutations = {
     state.userInfo = ''
   }
 }
-
 export const actions = {
   // this.$store.commit = da
   login ({ commit }, data) {

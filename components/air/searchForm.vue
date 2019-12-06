@@ -221,6 +221,9 @@ export default {
       // 不通过验证
       if (!valid) { return true }
 
+      this.form.departCity = this.form.departCity.replace(/市$/, '')
+      this.form.destCity = this.form.destCity.replace(/市$/, '')
+
       this.$router.push({
         path: '/air/flights',
         query: this.form

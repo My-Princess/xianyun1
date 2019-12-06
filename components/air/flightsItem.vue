@@ -1,6 +1,6 @@
 <template>
   <div class="flight-item">
-    <div>
+    <div @click="headShow">
       <!-- 显示的机票信息 -->
       <el-row type="flex" align="middle" class="flight-info">
         <el-col :span="6">
@@ -66,6 +66,7 @@
 
 <script>
 export default {
+  // props: { 'flight': Object },
   props: [ 'flight' ],
   data () {
     return {
@@ -77,9 +78,9 @@ export default {
     rankTime () {
       // 转换为分钟
       const dep = this.flight.dep_time.split(':')
-      console.log(dep)
+      // console.log(dep)
       const arr = this.flight.arr_time.split(':')
-      console.log(arr)
+      // console.log(arr)
       const stateTime = dep[0] * 60 + +dep[1]
       const endTime = arr[0] * 60 + +arr[1]
 
@@ -94,7 +95,9 @@ export default {
     }
   },
   methods: {
-
+    headShow () {
+      this.showRecommend = !this.showRecommend
+    }
   }
 }
 </script>
