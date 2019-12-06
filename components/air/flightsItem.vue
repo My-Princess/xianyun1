@@ -10,7 +10,7 @@
           <el-row type="flex" justify="space-between" class="flight-info-center">
             <el-col :span="8" class="flight-airport">
               <strong>{{ flight.dep_time }}</strong>
-              <span>{{ flight.dst_airport_name }}</span>
+              <span>{{ flight.org_airport_name }}</span>
             </el-col>
             <!-- 时间差 -->
             <el-col :span="8" class="flight-time">
@@ -18,7 +18,7 @@
             </el-col>
             <el-col :span="8" class="flight-airport">
               <strong>{{ flight.arr_time }}</strong>
-              <span>{{ flight.org_airport_name }}</span>
+              <span>{{ flight.dst_airport_name }}</span>
             </el-col>
           </el-row>
         </el-col>

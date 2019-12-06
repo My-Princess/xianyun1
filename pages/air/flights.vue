@@ -4,7 +4,7 @@
       <!-- 顶部过滤列表 -->
       <div class="flights-content">
         <!-- 过滤条件 -->
-        <FlightsFilters />
+        <FlightsFilters :flightsData="cheachflightsData" @setDataList="setDataList" />
 
         <!-- 航班头部布局 -->
         <FlightsListHead />
@@ -17,7 +17,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="pageIndex"
-            :page-sizes="[4, 8, 10]"
+            :page-sizes="[5, 10, 15]"
             :page-size="pageSize"
             :total="flightsData.total"
             layout="total, sizes, prev, pager, next, jumper"
@@ -46,9 +46,18 @@ export default {
       pageIndex: 1, // 当前页数
       pageSize: 5, // 当前条数
       flightsData: {
-        flights: []
-      } // 航班总数据
+        flights: [],
+        info: {},
+        options: {}
+      },
+      // 航班总数据
       // dataList: [] // 航班列表数据
+      // 深拷贝一个新的不影响之前的
+      cheachflightsData: {
+        flights: [],
+        info: {},
+        options: {}
+      }
     }
   },
   computed: {
@@ -61,6 +70,9 @@ export default {
   mounted () {
     this.getData()
   },
+  updated () {
+    console.log(this.flightsData)
+  },
   methods: {
     // 总数据
     getData () {
@@ -71,16 +83,17 @@ export default {
         console.log(res)
         this.flightsData = res.data
         // this.dataList = this.flightsData.flights
+        this.cheachflightsData = { ...res.data }
         // this.setDataList()
       })
     },
     // 筛选分类
-    setDataList () {
-      // 0,5  5,10, 10,15
-      const statenum = (this.pageIndex - 1) * this.pageSize
-      const endnum = statenum + this.pageSize
-      this.dataList = this.flightsData.flights.slice(statenum, endnum)
-    },
+    // setDataList () {
+    //   // 0,5  5,10, 10,15
+    //   const statenum = (this.pageIndex - 1) * this.pageSize
+    //   const endnum = statenum + this.pageSize
+    //   this.dataList = this.flightsData.flights.slice(statenum, endnum)
+    // },
     // 分页切换时
     handleSizeChange (val) {
       // console.log(val)
@@ -93,6 +106,10 @@ export default {
       // console.log(val)
       this.pageIndex = val
       // this.setDataList()
+    },
+    setDataList (arr) {
+      this.flightsData.flights = arr
+      this.flightsData.total = arr.length
     }
   }
 
