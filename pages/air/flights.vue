@@ -45,17 +45,19 @@ export default {
     return {
       pageIndex: 1, // 当前页数
       pageSize: 5, // 当前条数
-      flightsData: {}, // 航班总数据
-      dataList: [] // 航班列表数据
+      flightsData: {
+        flights: []
+      } // 航班总数据
+      // dataList: [] // 航班列表数据
     }
   },
-  // computed: {
-  //   dataList () {
-  //     const statenum = (this.pageIndex - 1) * this.pageSize
-  //     const endnum = statenum + this.pageSize
-  //     this.dataList = this.flightsData.flights.slice(statenum, endnum)
-  //   }
-  // },
+  computed: {
+    dataList () {
+      const statenum = (this.pageIndex - 1) * this.pageSize
+      const endnum = statenum + this.pageSize
+      return this.flightsData.flights.slice(statenum, endnum)
+    }
+  },
   mounted () {
     this.getData()
   },
@@ -69,7 +71,7 @@ export default {
         console.log(res)
         this.flightsData = res.data
         // this.dataList = this.flightsData.flights
-        this.setDataList()
+        // this.setDataList()
       })
     },
     // 筛选分类
@@ -79,19 +81,18 @@ export default {
       const endnum = statenum + this.pageSize
       this.dataList = this.flightsData.flights.slice(statenum, endnum)
     },
-
     // 分页切换时
     handleSizeChange (val) {
       // console.log(val)
       this.pageSize = val
       this.pageIndex = 1
-      this.setDataList()
+      // this.setDataList()
     },
     // 选页触发
     handleCurrentChange (val) {
       // console.log(val)
       this.pageIndex = val
-      this.setDataList()
+      // this.setDataList()
     }
   }
 
