@@ -50,6 +50,7 @@
             </el-col>
             <el-col :span="3" class="choose-button">
               <el-button
+                @click="designate(flight.id,item.seat_xid)"
                 type="warning"
                 size="mini"
               >
@@ -97,6 +98,15 @@ export default {
   methods: {
     headShow () {
       this.showRecommend = !this.showRecommend
+    },
+    designate (id, xid) {
+      this.$router.push({
+        path: '/air/order',
+        query: {
+          id,
+          seat_xid: xid
+        }
+      })
     }
   }
 }

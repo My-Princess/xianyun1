@@ -12,7 +12,7 @@
     <p class="form-text">
       <nuxt-link to="#">
         忘记密码
-      </nuxt-link>
+      </nuxt-link>]
     </p>
     <el-form-item>
       <el-button @click="submitForm" type="primary">
